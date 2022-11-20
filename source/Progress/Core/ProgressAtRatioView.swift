@@ -102,7 +102,7 @@ class ProgressAtRatioView: UIView {
         // Progress Ratio
         ratioLabel.text = "          "
         ratioLabel.font = prop.ratioLabelFont
-        ratioLabel.textAlignment = NSTextAlignment.right
+        ratioLabel.textAlignment = NSTextAlignment.center
         ratioLabel.textColor = prop.ratioLabelFontColor
         ratioLabel.frame.size = (ratioLabel.text as! NSString).boundingRect(
             with: CGSize(width: prop.progressSize, height: CGFloat.infinity),
