@@ -19,7 +19,10 @@ let package = Package(
         .target(
             name: "GradientCircularProgress",
             path: ".",
-            sources: ["source"]
+            sources: ["source"],
+            swiftSettings: [
+                .unsafeFlags(["-suppress-warnings"]),
+            ]
         ),
         .testTarget(
             name: "GradientCircularProgressTests",
