@@ -6,6 +6,9 @@
 //  Copyright (c) 2015年 keygx. All rights reserved.
 //
 
+import Foundation
+import UIKit
+
 public protocol StyleProperty {
     // Progress Size
     var progressSize: CGFloat { get set }
