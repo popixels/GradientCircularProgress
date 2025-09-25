@@ -94,24 +94,29 @@ class ProgressAtRatioView: UIView {
     }
     
     func showRatio() {
-        
-        guard let prop = prop else {
-            return
-        }
-        
+        guard let prop = prop else { return }
+
+        guard
+            let text = ratioLabel.text,
+            let font = prop.ratioLabelFont
+        else { return }
+
         // Progress Ratio
         ratioLabel.text = "          "
-        ratioLabel.font = prop.ratioLabelFont
-        ratioLabel.textAlignment = NSTextAlignment.center
+        ratioLabel.font = font
+        ratioLabel.textAlignment = .center
         ratioLabel.textColor = prop.ratioLabelFontColor
-        ratioLabel.frame.size = (ratioLabel.text as! NSString).boundingRect(
-            with: CGSize(width: prop.progressSize, height: CGFloat.infinity),
+        let nsText = text as NSString
+        ratioLabel.frame.size = nsText.boundingRect(
+            with: CGSize(width: prop.progressSize, height: .infinity),
             options: .usesLineFragmentOrigin,
-            attributes: [.font: ratioLabel.font],
-            context: nil).size
+            attributes: [.font: font],
+            context: nil
+        ).size
+
         ratioLabel.center = center
         ratioLabel.adjustsFontSizeToFitWidth = true
-        
+
         addSubview(ratioLabel)
     }
 }

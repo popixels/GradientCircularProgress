@@ -40,7 +40,7 @@ class ProgressViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         let orientation: UIInterfaceOrientation
         if #available(iOS 13.0, *) {
-            orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? .portrait
+            orientation = UIApplication.shared.activeInterfaceOrientation ?? .portrait
         } else {
             orientation = UIApplication.shared.statusBarOrientation
         }
@@ -172,5 +172,21 @@ class ProgressViewController: UIViewController {
                 }
             )
         }
+    }
+}
+
+private extension UIApplication {
+    var activeWindowScene: UIWindowScene? {
+        connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first { $0.activationState == .foregroundActive }
+    }
+
+    var activeWindow: UIWindow? {
+        activeWindowScene?.windows.first { $0.isKeyWindow }
+    }
+
+    var activeInterfaceOrientation: UIInterfaceOrientation? {
+        activeWindowScene?.interfaceOrientation
     }
 }
